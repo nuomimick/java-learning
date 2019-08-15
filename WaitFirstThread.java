@@ -91,4 +91,32 @@ public class WaitFirstThread {
         }
         executorService.shutdown();
     }
+    
+    /**
+     * 第三个版本，信号量控制
+     */
+    public void waitThree() {
+        final Status status = new Status();
+        Semaphore s = new Semaphore(1);
+        Runnable r = () -> {
+            try {
+                s.acquire(1);
+                if (status.getStatus() == 0){
+                    status.setStatus(1);
+                    System.out.println("查询");
+                }
+                if (s.availablePermits() < 1){
+                    s.release(10);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("直接返回:" + status.getStatus());
+        };
+        ExecutorService executorService = Executors.newFixedThreadPool(100);
+        for (int i = 0; i < 100; i++) {
+            executorService.submit(r);
+        }
+        executorService.shutdown();
+    }
 }
