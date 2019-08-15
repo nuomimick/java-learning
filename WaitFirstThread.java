@@ -10,6 +10,11 @@ class Status {
      * @return 查询结果
      */
     public int getStatus() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return status;
     }
 
@@ -27,6 +32,9 @@ class Status {
 }
 
 public class WaitFirstThread {
+    /**
+     * 第一个版本，读线程会阻塞（串行执行）
+     */
     public void waitOne() {
         final Status status = new Status();
         ReentrantLock lock = new ReentrantLock();
@@ -54,31 +62,28 @@ public class WaitFirstThread {
         executorService.shutdown();
     }
 
+    /**
+     * 第二个版本，用while循环等待，支持读并发
+     */
     public void waitTwo() {
         final Status status = new Status();
         ReentrantLock lock = new ReentrantLock();
-        Condition condition = lock.newCondition();
         AtomicInteger counter = new AtomicInteger(0);
         Runnable r = () -> {
             counter.getAndIncrement();
-            lock.lock();
-            try {
-                if (counter.get() > 1) {
-                    if (status.getStatus() == 0) {
-                        condition.await();
+            if (counter.get() > 1) {
+                while (status.getStatus() == 0) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
-                    System.out.println("直接返回:" + status.getStatus());
-                } else {
-                    status.setStatus(1);
-                    System.out.println("查询");
-                    condition.signal();
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } finally {
-                lock.unlock();
+                System.out.println("直接返回:" + status.getStatus());
+            } else {
+                status.setStatus(1);
+                System.out.println("查询");
             }
-
         };
         ExecutorService executorService = Executors.newFixedThreadPool(100);
         for (int i = 0; i < 10; i++) {
