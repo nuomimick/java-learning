@@ -5,3 +5,4 @@ Java学习笔记
 2. [rabbitmq如何保证消息的可靠性传输（如何防止消息丢失）](./mq/rabbitmq1.md)
 3. [rabbitmq常用函数参数说明](./mq/rabbitmq_base.md)
 4. [rabbitmq交换器使用](./mq/rabbitmq_exchange.md)
+5. [rabbitmq在springboot中的使用](./mq/rabbitmq_springboot.md)
