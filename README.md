@@ -6,4 +6,4 @@ Java学习笔记
 3. [rabbitmq基础](./mq/rabbitmq_base.md)
 4. [rabbitmq交换器使用](./mq/rabbitmq_exchange.md)
 5. [rabbitmq在springboot中的使用](./mq/rabbitmq_springboot.md)
-6. 
+6. [rabbitmq实战](https://blog.csdn.net/u013871100/article/details/82982235)
