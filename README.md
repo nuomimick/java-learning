@@ -7,3 +7,4 @@ Java学习笔记
 4. [rabbitmq交换器使用](./mq/rabbitmq_exchange.md)
 5. [rabbitmq在springboot中的使用](./mq/rabbitmq_springboot.md)
 6. [rabbitmq实战](https://blog.csdn.net/u013871100/article/details/82982235)
+7. [mysql数据目录](./mysql/mysql_datadir.md)
