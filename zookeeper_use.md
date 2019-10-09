@@ -110,7 +110,7 @@ public class ZKDemo02 implements Watcher {
 class IStringCallback implements AsyncCallback.StringCallback {
 
     /**
-     * @param i  服务器响应码，0：接口调用成功，4：客户端和服务器端已断开，110：指定节点已存在，112：会话已过期
+     * @param i  服务器响应码，0：接口调用成功，-4：客户端和服务器端已断开，-110：指定节点已存在，-112：会话已过期
      * @param s  节点路径
      * @param o  调用API时传入的ctx参数
      * @param s1 实际在服务器端创建的节点名
