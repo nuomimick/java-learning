@@ -6,3 +6,4 @@ Java学习笔记
 3. [Rabbitmq笔记](./mq/README.md)
 4. [Mysql笔记](./mysql/README.md)
 5. [Paxos通俗易懂的例子](https://www.cnblogs.com/endsock/p/3480093.html)
+6. [Zookeeper笔记](./zookeeper/README.md)
