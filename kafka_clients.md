@@ -1,4 +1,4 @@
-# Kafka kafka-clients依赖包使用demo
+# kafka-clients依赖包使用demo
 ```
 public class Demo01 {
     private static final String TEST_TOPIC = "test-topic";
