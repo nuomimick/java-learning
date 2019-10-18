@@ -1,4 +1,14 @@
-# kafka-clients依赖包使用demo
+# kafka-clients依赖包使用demo  
+
+引入依赖包
+```
+<dependency>
+    <groupId>org.apache.kafka</groupId>
+    <artifactId>kafka-clients</artifactId>
+    <version>2.3.0</version>
+</dependency>
+```
+使用示例
 ```
 public class Demo01 {
     private static final String TEST_TOPIC = "test-topic";
