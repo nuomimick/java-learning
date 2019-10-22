@@ -16,6 +16,10 @@ public class Demo01 {
     public static void main(String[] args) throws Exception {
         Properties props = new Properties();
         props.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, "10.99.207.185:9092");
+        # 开启sasl认证要加以下代码
+        System.setProperty("java.security.auth.login.config", "C:\\Users\\z18270\\Desktop\\kafka_client_jaas.conf");
+        props.put("security.protocol", "SASL_PLAINTEXT");
+        props.put("sasl.mechanism", "PLAIN");
 
         try (AdminClient client = AdminClient.create(props)) {
             describeCluster(client);
