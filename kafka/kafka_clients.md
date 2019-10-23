@@ -16,10 +16,16 @@ public class Demo01 {
     public static void main(String[] args) throws Exception {
         Properties props = new Properties();
         props.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, "10.99.207.185:9092");
-        # 开启sasl认证要加以下代码
+        # 开启sasl/plain认证要加以下代码
         System.setProperty("java.security.auth.login.config", "C:\\Users\\z18270\\Desktop\\kafka_client_jaas.conf");
         props.put("security.protocol", "SASL_PLAINTEXT");
         props.put("sasl.mechanism", "PLAIN");
+        # 开启sasl/kerberos认证
+        #System.setProperty("java.security.auth.login.config", "/etc/kafka/3.0.1.0-187/0/kafka_client_jaas.conf");
+        #System.setProperty("java.security.krb5.conf", "/etc/krb5.conf");
+        #props.put("security.protocol", "SASL_PLAINTEXT");
+        #props.put("sasl.mechanism", "GSSAPI");
+        #props.put("sasl.kerberos.service.name", "kafka");
 
         try (AdminClient client = AdminClient.create(props)) {
             describeCluster(client);
