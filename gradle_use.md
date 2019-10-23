@@ -21,4 +21,48 @@ allprojects {
         }
     }
 }
+```  
+
+
+**自动打成Jar包**  
+build.gradle配置如下：
+```
+group 'my.demo'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.apache.kafka', name: 'kafka-clients', version: '2.3.0'
+}
+
+jar {
+    // 以下两个属性会覆盖上面配置的version字段
+    baseName = 'kafka-demo'
+    version = '1.0'
+    manifest {
+        attributes 'Main-Class': 'kafka.Demo01'
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+task copyJar(type: Copy) {
+    // configurations.runtime 就是运行时环境，也就是依赖包
+    from configurations.runtime
+    into('build/libs/lib')
+}
+
+//把JAR发布到目标目录
+task release(type: Copy, dependsOn: [build, copyJar]) {
+//    from  'conf'
+//    into ('build/libs/eachend/conf')
+}
+
 ```
