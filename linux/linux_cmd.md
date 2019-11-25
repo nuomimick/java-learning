@@ -48,3 +48,13 @@ iface eth1 inet static
 ```
 /etc/init.d/networking restart
 ```
+2. 开启ssh
+```
+vi /etc/ssh/sshd_config
+# 修改
+PermitRootLogin yes
+```
+重启ssh
+```
+/etc/init.d/ssh restart
+```
