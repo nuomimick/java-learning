@@ -27,3 +27,24 @@ export JRE_HOME=$JAVA_HOME/jre
 ```
 jps -mlv
 ```
+
+**Debian版本**
+1. 修改IP  
+查看物理地址对应的网卡名字
+```
+cat /etc/udev/rules.d/70-persistent-net.rules
+```
+修改ip和对应的网卡名字
+```
+vi /etc/network/interfaces
+#########修改如下##########
+......
+allow-hotplug eth0
+iface eth1 inet static
+        address 10.99.207.178
+......
+```
+重启网络
+```
+/etc/init.d/networking restart
+```
