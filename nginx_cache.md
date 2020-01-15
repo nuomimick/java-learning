@@ -18,3 +18,7 @@ location ~ ^/abc/bcd {
         proxy_pass   http://127.0.0.1:6666;
     }
 ```
+
+参考文章：  
+[Nginx缓存配置指南](https://www.cnblogs.com/bdhk/p/9198499.html)  
+[nginx proxy_cache 配置](https://blog.csdn.net/bigtree_3721/article/details/72820922)
