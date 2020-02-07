@@ -13,6 +13,7 @@ service network restart
 firewall-cmd --zone=public(作用域) --add-port=80/tcp(端口和访问类型) --permanent(永久生效)
 firewall-cmd --zone= public --remove-port=80/tcp --permanent  # 删除
 firewall-cmd --reload    # 重新载入，更新防火墙规则
+firewall-cmd --zone=public --list-ports # 查看开放的端口号
 ```
 3. 添加环境变量
 ```
